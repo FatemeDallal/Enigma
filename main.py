@@ -61,5 +61,81 @@ def de_code_reflector(a):
     return chr(97 + (25 - de_code_letter(a)))
 
 
+def shift_rotor(rotor):
+
+    res = rotor[-1]
+    for i in range(0, len(rotor) - 1):
+        res += rotor[i]
+
+    return res
+
+
+if __name__ == '__main__':
+    print("Enter Date .")
+    date = input()
+
+    print("Enter the input .")
+    entry = input()
+
+    if search_date(date) != "not exit":
+        enigma = search_date(date)
+
+        cnt = 0
+
+        for i in entry:
+            # Plug Board
+            i = de_code_plugboard(i, enigma.plug_board)
+
+            # rotor3
+            i = de_code_rotor(i, enigma.rotor3)
+
+            # rotor2
+            i = de_code_rotor(i, enigma.rotor2)
+
+            # rotor1
+            i = de_code_rotor(i, enigma.rotor1)
+
+            # reflector
+            i = de_code_reflector(i)
+
+            # rotor1
+            i = de_code_rotor(i, enigma.rotor1)
+
+            # rotor2
+            i = de_code_rotor(i, enigma.rotor2)
+
+            # rotor3
+            i = de_code_rotor(i, enigma.rotor3)
+
+            # Plug Board
+            i = de_code_plugboard(i, enigma.plug_board)
+
+            print(i)
+
+            if cnt < 26:
+                # shift rotor3
+                shift_rotor(enigma.rotor3)
+                cnt += 1
+
+            elif cnt < 52:
+                # shift rotor2
+                shift_rotor(enigma.rotor2)
+                cnt += 1
+
+            elif cnt < 78:
+                # shift rotor1
+                shift_rotor(enigma.rotor1)
+                cnt += 1
+
+            elif cnt == 78:
+                cnt = 0
+                # shift rotor3
+                shift_rotor(enigma.rotor3)
+                cnt += 1
+
+    else:
+        print("not exit")
+
+
 
 
