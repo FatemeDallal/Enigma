@@ -44,3 +44,7 @@ def search_date(date):
 
 def de_code_letter(a):
     return ord(a) - 97
+
+
+def de_code_rotor(a, rotor):
+    return rotor[de_code_letter(a)]
