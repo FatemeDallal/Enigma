@@ -56,3 +56,7 @@ def de_code_plugboard(a, plug):
     else:
         return plug.get(a)
 
+
+def de_code_reflector(a):
+    return chr(97 + (25 - de_code_letter(a)))
+
