@@ -115,7 +115,8 @@ if __name__ == '__main__':
 
         answer = []
 
-        cnt = 0
+        cnt_rotor2 = 0
+        cnt_rotor3 = 0
 
         for i in entry:
             # Plug Board
@@ -147,26 +148,15 @@ if __name__ == '__main__':
 
             answer.append(i)
 
-            if cnt < 26:
-                # shift rotor3
-                enigma.rotor3 = dict(shift_rotor(enigma.rotor3))
-                cnt += 1
+            cnt_rotor3 += 1
+            enigma.rotor3 = dict(shift_rotor(enigma.rotor3))
 
-            elif cnt < 52:
-                # shift rotor2
+            if cnt_rotor3 == 26:
+                cnt_rotor2 += 1
                 enigma.rotor2 = dict(shift_rotor(enigma.rotor2))
-                cnt += 1
 
-            elif cnt < 78:
-                # shift rotor1
+            if cnt_rotor2 == 26:
                 enigma.rotor1 = dict(shift_rotor(enigma.rotor1))
-                cnt += 1
-
-            elif cnt == 78:
-                cnt = 0
-                # shift rotor3
-                shift_rotor(enigma.rotor3)
-                cnt += 1
 
         for i in answer:
             print(i, end="")
