@@ -48,3 +48,11 @@ def de_code_letter(a):
 
 def de_code_rotor(a, rotor):
     return rotor[de_code_letter(a)]
+
+
+def de_code_plugboard(a, plug):
+    if plug.get(a) is None:
+        return a
+    else:
+        return plug.get(a)
+
