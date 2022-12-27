@@ -40,3 +40,7 @@ def search_date(date):
         return enigma
     else:
         return "not exist"
+
+
+def de_code_letter(a):
+    return ord(a) - 97
